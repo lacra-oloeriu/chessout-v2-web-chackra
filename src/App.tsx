@@ -3,11 +3,11 @@ import {
   Container,
   Heading,
   HStack,
-  theme,
   VStack,
 } from "@chakra-ui/react";
 import * as React from "react";
 import { Outlet, Link } from "react-router-dom";
+import  theme  from "./theme/default-dark";
 
 export const App = () => (
   <ChakraProvider theme={theme}>
