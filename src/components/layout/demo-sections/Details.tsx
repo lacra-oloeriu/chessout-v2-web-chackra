@@ -65,7 +65,7 @@ const Details = () => {
           </Checkbox>
         </GridItem>
         <GridItem colSpan={1}>
-          <Button w="full">Ship to billing address</Button>
+          <Button variant="primary" colorScheme="brand" w="full">Place Order</Button>
         </GridItem>
         <GridItem colSpan={1}>
           <Button w="full" onClick={toggleColorMode}>
