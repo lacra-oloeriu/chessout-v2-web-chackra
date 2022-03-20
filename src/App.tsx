@@ -1,19 +1,9 @@
+import { Box, ChakraProvider, Flex, Grid, theme } from "@chakra-ui/react";
 import * as React from "react";
-import {
-  ChakraProvider,
-  Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
-  Flex,
-} from "@chakra-ui/react";
-import theme from "./theme";
+//import theme from "./theme";
 import { ColorModeSwitcher } from "./components/layout/ColorModeSwitcher";
-import { Logo } from "./components/layout/Logo";
-import Details from "./components/layout/demo-sections/Details";
 import Cart from "./components/layout/demo-sections/Cart";
+import Details from "./components/layout/demo-sections/Details";
 
 export const App = () => (
   <ChakraProvider theme={theme}>
