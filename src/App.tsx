@@ -1,24 +1,25 @@
-import { Box, ChakraProvider, Flex, Grid, theme } from "@chakra-ui/react";
+import {
+  ChakraProvider,
+  Container,
+  Heading,
+  HStack,
+  theme,
+  VStack,
+} from "@chakra-ui/react";
 import * as React from "react";
-//import theme from "./theme";
-import { ColorModeSwitcher } from "./components/layout/ColorModeSwitcher";
-import Cart from "./components/layout/demo-sections/Cart";
-import Details from "./components/layout/demo-sections/Details";
+import { Outlet, Link } from "react-router-dom";
 
 export const App = () => (
   <ChakraProvider theme={theme}>
-    <Box textAlign="center" fontSize="xl">
-      <Grid minH="100vh" p={3}>
-        <ColorModeSwitcher justifySelf="flex-end" />
-        <Flex
-          h={{ base: "auto", md: "100vh" }}
-          py={[0, 10, 20]}
-          direction={{ base: "column", md: "row" }}
-        >
-          <Details />
-          <Cart />
-        </Flex>
-      </Grid>
-    </Box>
+    <Container p={3}>
+      <VStack>
+        <Heading>Bookkeeper</Heading>
+        <HStack>
+          <Link to="/invoices">Invoices</Link> |{" "}
+          <Link to="/expenses">Expenses</Link>
+        </HStack>
+      </VStack>
+      <Outlet />
+    </Container>
   </ChakraProvider>
 );
