@@ -1,7 +1,18 @@
 import React from "react";
-import { Text } from "@chakra-ui/react";
+import { Button, HStack, Text } from "@chakra-ui/react";
 import { BasicContext } from "../../../util/basicContext";
 import { ValContext } from "../../../App";
+import { ContextState } from "../../../util/BasicContextInterface";
+
+export const myLoggedOut: ContextState = {
+  userLoggedIn: false,
+  userName: "Bogdan Oloeriu",
+};
+
+export const myLoggedIn: ContextState = {
+  userLoggedIn: true,
+  userName: "Bogdan Oloeriu",
+};
 
 const UserComponent = () => {
   const appContext = React.useContext(BasicContext);
@@ -15,7 +26,14 @@ const UserComponent = () => {
     ) : (
       <Text>Hello: {state?.userName}</Text>
     );
-  return userComponent;
+  let inOut =
+    state.userLoggedIn === true ? (
+      <Button onClick={() => update(myLoggedOut)}>Log Out</Button>
+    ) : (
+      <Button onClick={() => update(myLoggedIn)}>Log In</Button>
+    );
+
+  return <HStack>{userComponent}{inOut}</HStack>;
 };
 
 export default UserComponent;
