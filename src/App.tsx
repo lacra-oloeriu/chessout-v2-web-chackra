@@ -38,7 +38,7 @@ export const ValContext = ctx;
 export function App() {
   return (
     <ChakraProvider theme={theme}>
-      <BasicContext.Provider value={myContext}>
+      <ContextStateProvider>
         <Container p={3}>
           <VStack>
             <HStack>
@@ -54,7 +54,7 @@ export function App() {
           <Outlet />
         </Container>
         i
-      </BasicContext.Provider>
+      </ContextStateProvider>
     </ChakraProvider>
   );
 }
