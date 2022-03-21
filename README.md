@@ -59,5 +59,6 @@ You can learn more in the
 To learn React, check out the [React documentation](https://reactjs.org/).
 
 ## chakra ui
-- [first-steps](https://chakra-ui.com/guides/first-steps)
 
+- [first-steps](https://chakra-ui.com/guides/first-steps)
+- [context-hint](https://react-typescript-cheatsheet.netlify.app/docs/basic/getting-started/context/#basic-example)
