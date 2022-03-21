@@ -9,36 +9,15 @@ import * as React from "react";
 import { Outlet, Link } from "react-router-dom";
 import UserComponent from "./components/layout/demo-sections/UserComponent";
 import theme from "./theme/default-dark";
+import { ContextProvider } from "./util/basicContext";
 
-import { BasicContext } from "./util/basicContext";
-import { ContextState } from "./util/BasicContextInterface";
 
-export const myContext: ContextState = {
-  userLoggedIn: true,
-  userName: "Bogdan Oloeriu",
-};
 
-export function createCtx<ContextState>(defaultValue: ContextState) {
-  type UpdateType = React.Dispatch<React.SetStateAction<typeof defaultValue>>;
-  const defaultUpdate: UpdateType = () => defaultValue;
-  const ctx = React.createContext({
-    state: defaultValue,
-    update: defaultUpdate,
-  });
-  function Provider(props: React.PropsWithChildren<{}>) {
-    const [state, update] = React.useState(defaultValue);
-    return <ctx.Provider value={{ state, update }} {...props} />;
-  }
-  return [ctx, Provider] as const;
-}
-
-const [ctx, ContextStateProvider] = createCtx(myContext);
-export const ValContext = ctx;
 
 export function App() {
   return (
     <ChakraProvider theme={theme}>
-      <ContextStateProvider>
+      <ContextProvider>
         <Container p={3}>
           <VStack>
             <HStack>
@@ -54,7 +33,7 @@ export function App() {
           <Outlet />
         </Container>
         i
-      </ContextStateProvider>
+      </ContextProvider>
     </ChakraProvider>
   );
 }
