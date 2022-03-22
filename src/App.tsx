@@ -33,8 +33,9 @@ export function App() {
                 <UserComponent />
               </HStack>
               <HStack>
-                <Link to="/invoices">Invoices</Link> |{" "}
-                <Link to="/expenses">Expenses</Link>
+                <Link to="/invoices">Invoices</Link> 
+                <Link to="/expenses">Expenses</Link> 
+                <Link to="/wallet">Wallet</Link> 
               </HStack>
             </VStack>
             <Outlet />
