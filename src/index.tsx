@@ -11,6 +11,7 @@ import NotThePageYouAreLookingFore from "./routes/notThePageYouAreLokingFore";
 import Invoice from "./routes/invoice";
 import PleaseSelectAnElement from "./routes/pleaseSelectAnElement";
 import MyWallet from "./routes/myWallet";
+import MyContract from "./routes/myContract";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -24,6 +25,7 @@ ReactDOM.render(
             <Route path=":invoiceId" element={<Invoice />} />
           </Route>
           <Route path="wallet" element={<MyWallet />} />
+          <Route path="myContract" element={<MyContract />} />
           <Route path="*" element={<NotThePageYouAreLookingFore />} />
         </Route>
       </Routes>

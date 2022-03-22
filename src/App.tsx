@@ -36,6 +36,7 @@ export function App() {
                 <Link to="/invoices">Invoices</Link> 
                 <Link to="/expenses">Expenses</Link> 
                 <Link to="/wallet">Wallet</Link> 
+                <Link to="/myContract">MyContract</Link>
               </HStack>
             </VStack>
             <Outlet />
