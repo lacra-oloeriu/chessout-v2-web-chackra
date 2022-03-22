@@ -7,6 +7,7 @@ import {
 } from "@chakra-ui/react";
 import * as React from "react";
 import { Outlet, Link } from "react-router-dom";
+import NavBar from "./components/chessout/navBar";
 import UserComponent from "./components/layout/demo-sections/UserComponent";
 import theme from "./theme/default-dark";
 import { ContextProvider } from "./util/basicContext";
@@ -20,6 +21,7 @@ export function App() {
       <ContextProvider>
         <Container p={3}>
           <VStack>
+            <NavBar/>
             <HStack>
               <Heading>Bookkeeper</Heading>
               <div></div>

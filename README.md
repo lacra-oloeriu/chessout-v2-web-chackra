@@ -63,3 +63,4 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 - [first-steps](https://chakra-ui.com/guides/first-steps)
 - [context-hint](https://react-typescript-cheatsheet.netlify.app/docs/basic/getting-started/context/#basic-example)
 - [better create context discussion](https://gist.github.com/sw-yx/f18fe6dd4c43fddb3a4971e80114a052)
+- [chakra templates](https://chakra-templates.dev/page-sections/hero)
