@@ -92,6 +92,9 @@ export default function MyContract() {
   const [contractIdList, setContractIdList] = React.useState(
     initContractIdList
   );
+  const /*transactionSessionId*/ [, setTransactionSessionId] = React.useState<
+  string | null
+>(null);
 
   React.useEffect(() => {
     async function fetchContractData() {
@@ -105,11 +108,28 @@ export default function MyContract() {
   const { sendTransactions } = transactionServices;
 
   const createNewTournament = async () => {
+    console.log("Formatting transaction")
     const createTournamentTransaction = {
       data: "createTournament tournament-03 EGLD 11",
       receiver:
         "erd1qqqqqqqqqqqqqpgq4mhvpxl9w49z63ppuwfr74nwvudd0zdtd8ssnfgknq",
     };
+
+    await refreshAccount();
+
+    const { sessionId /*, error*/ } = await sendTransactions({
+      transactions: createTournamentTransaction,
+      transactionsDisplayInfo: {
+        processingMessage: 'Processing Ping transaction',
+        errorMessage: 'An error has occured during Ping',
+        successMessage: 'Ping transaction successful'
+      },
+      redirectAfterSign: false
+    });
+    if (sessionId != null) {
+      console.log("sessionId",sessionId)
+      setTransactionSessionId(sessionId);
+    }
   };
 
   let idList = tournamentIdList.map((id) => <Text key={id}>{id}val</Text>);
