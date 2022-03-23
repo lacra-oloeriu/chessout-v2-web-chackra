@@ -55,14 +55,9 @@ async function getTournamentInfoList(): Promise<string[]> {
       interaction.buildQuery()
     );
     let response = interaction.interpretQueryResponse(queryResponse);
-    console.log(response);
-
-    console.log("--------------------List iteration -------------");
     let myType = response.firstValue.getType();
-    console.log(myType);
 
     let myList = response.firstValue.valueOf();
-    console.log(myList);
 
     let myReturnList: string[] = [];
 
@@ -70,11 +65,9 @@ async function getTournamentInfoList(): Promise<string[]> {
       let bufferedId = element.tournament_id;
 
       let stringVal = bufferedId.toString();
-      console.log(stringVal);
       myReturnList.push(stringVal);
 
       let signInPrice = element.sing_in_price.toFixed();
-      console.log(signInPrice);
     });
     return myReturnList;
   } catch (error) {
@@ -88,6 +81,8 @@ export default function MyContract() {
   const { hasPendingTransactions } = useGetPendingTransactions();
   const { network } = useGetNetworkConfig();
   const { address } = account;
+
+  const isLoggedIn = Boolean(address);
 
   const initTournamentIdList: string[] = ["tournament-01", "tournament-02"];
   const initContractIdList: string[] = [];
@@ -109,17 +104,24 @@ export default function MyContract() {
 
   const { sendTransactions } = transactionServices;
 
-  const createNewTournament = async (tournamentId: string) => {
-    const createTournamentTransaction ={
-      data:''
-    }
+  const createNewTournament = async () => {
+    const createTournamentTransaction = {
+      data: "createTournament tournament-03 EGLD 11",
+      receiver:
+        "erd1qqqqqqqqqqqqqpgq4mhvpxl9w49z63ppuwfr74nwvudd0zdtd8ssnfgknq",
+    };
   };
 
   let idList = tournamentIdList.map((id) => <Text key={id}>{id}val</Text>);
 
   let contractList = contractIdList.map((id) => <Text key={id}>{id}val</Text>);
 
-  console.log("contractIdList", contractIdList);
+  let createButton = isLoggedIn ? (
+    <Button onClick={createNewTournament}>Create</Button>
+  ) : (
+    ""
+  );
+
   return (
     <VStack alignItems={"flex-start"}>
       <HStack>
@@ -137,7 +139,7 @@ export default function MyContract() {
       <Divider />
       <HStack>
         <Input />
-        <Button>Create</Button>
+        {createButton}
       </HStack>
       <Divider />
       <Text>Data from contract</Text>
