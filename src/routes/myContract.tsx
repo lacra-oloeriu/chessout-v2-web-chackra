@@ -1,5 +1,9 @@
 import { Button, Divider, HStack, Input, Text, VStack } from "@chakra-ui/react";
 import {
+  DappUI, refreshAccount, transactionServices,
+  useGetAccountInfo, useGetNetworkConfig, useGetPendingTransactions, useSignTransactions
+} from "@elrondnetwork/dapp-core";
+import {
   AbiRegistry,
   Address,
   Balance,
@@ -9,20 +13,18 @@ import {
   NetworkConfig,
   ProxyProvider,
   SmartContract,
-  SmartContractAbi,
+  SmartContractAbi
 } from "@elrondnetwork/erdjs/out";
-
-import {
-  transactionServices,
-  useGetAccountInfo,
-  useGetPendingTransactions,
-  refreshAccount,
-  useGetNetworkConfig,
-} from "@elrondnetwork/dapp-core";
-
 import * as React from "react";
-import { NavLink } from "react-router-dom";
 import { getInvoices } from "../data";
+
+
+
+const {SignTransactionsModals} = DappUI;
+
+
+
+
 //import * from "../../my-contract.abi.json"
 let invoices = getInvoices();
 
@@ -84,6 +86,15 @@ export default function MyContract() {
   const { network } = useGetNetworkConfig();
   const { address } = account;
 
+  const {
+    callbackRoute,
+    transactions,
+    error,
+    sessionId,
+    onAbort,
+    hasTransactions
+  } = useSignTransactions();
+
   const isLoggedIn = Boolean(address);
 
   const initTournamentIdList: string[] = ["tournament-01", "tournament-02"];
@@ -126,7 +137,7 @@ export default function MyContract() {
     await refreshAccount();
 
     const { sessionId /*, error*/ } = await sendTransactions({
-      transactions: createTournamentTransaction,
+      transactions: [createTournamentTransaction],
       transactionsDisplayInfo: {
         processingMessage: 'Processing Ping transaction',
         errorMessage: 'An error has occured during Ping',
@@ -172,6 +183,7 @@ export default function MyContract() {
       <Divider />
       <Text>Data from contract</Text>
       {contractList}
+      <SignTransactionsModals className='custom-class-for-modals' />
     </VStack>
   );
 }
