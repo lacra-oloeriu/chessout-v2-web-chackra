@@ -52,6 +52,7 @@ async function getTournamentInfoList(): Promise<string[]> {
     let interaction: Interaction = contract.methods.getTournamentInfoList([
       BytesValue.fromUTF8("tournament-01"),
       BytesValue.fromUTF8("tournament-02"),
+      BytesValue.fromUTF8("tournament-06"),
     ]);
 
     let queryResponse = await contract.runQuery(
@@ -126,7 +127,7 @@ export default function MyContract() {
       value: "0",
       data: [
         "createTournament",
-        Buffer.from("tournament-05").toString("hex"),
+        Buffer.from("tournament-06").toString("hex"),
         Buffer.from("EGLD").toString("hex"),
         new BigUIntValue(Balance.egld(11).valueOf()),
       ].join("@"),
