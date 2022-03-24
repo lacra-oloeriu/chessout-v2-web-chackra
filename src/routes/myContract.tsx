@@ -126,8 +126,8 @@ export default function MyContract() {
       value: '0',
       data: [
         "createTournament",
-        BytesValue.fromUTF8("tournament-03"),
-        BytesValue.fromUTF8("EGLD"),
+        BytesValue.fromUTF8("tournament-03").valueOf(),
+        BytesValue.fromUTF8("EGLD").valueOf(),
         new BigUIntValue(Balance.egld(11).valueOf())
        ].join("@"),
       receiver:
