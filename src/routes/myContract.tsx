@@ -126,12 +126,13 @@ export default function MyContract() {
       value: "0",
       data: [
         "createTournament",
-        Buffer.from("tournament-03").toString("hex"),
+        Buffer.from("tournament-05").toString("hex"),
         Buffer.from("EGLD").toString("hex"),
         new BigUIntValue(Balance.egld(11).valueOf()),
       ].join("@"),
       receiver:
         "erd1qqqqqqqqqqqqqpgq4mhvpxl9w49z63ppuwfr74nwvudd0zdtd8ssnfgknq",
+      gasLimit: 10_000_000,
     };
 
     await refreshAccount();
