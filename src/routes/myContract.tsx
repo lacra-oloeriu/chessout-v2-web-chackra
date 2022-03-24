@@ -1,7 +1,12 @@
 import { Button, Divider, HStack, Input, Text, VStack } from "@chakra-ui/react";
 import {
-  DappUI, refreshAccount, transactionServices,
-  useGetAccountInfo, useGetNetworkConfig, useGetPendingTransactions, useSignTransactions
+  DappUI,
+  refreshAccount,
+  transactionServices,
+  useGetAccountInfo,
+  useGetNetworkConfig,
+  useGetPendingTransactions,
+  useSignTransactions,
 } from "@elrondnetwork/dapp-core";
 import {
   AbiRegistry,
@@ -13,17 +18,12 @@ import {
   NetworkConfig,
   ProxyProvider,
   SmartContract,
-  SmartContractAbi
+  SmartContractAbi,
 } from "@elrondnetwork/erdjs/out";
 import * as React from "react";
 import { getInvoices } from "../data";
 
-
-
-const {SignTransactionsModals} = DappUI;
-
-
-
+const { SignTransactionsModals } = DappUI;
 
 //import * from "../../my-contract.abi.json"
 let invoices = getInvoices();
@@ -92,7 +92,7 @@ export default function MyContract() {
     error,
     sessionId,
     onAbort,
-    hasTransactions
+    hasTransactions,
   } = useSignTransactions();
 
   const isLoggedIn = Boolean(address);
@@ -106,8 +106,8 @@ export default function MyContract() {
     initContractIdList
   );
   const /*transactionSessionId*/ [, setTransactionSessionId] = React.useState<
-  string | null
->(null);
+      string | null
+    >(null);
 
   React.useEffect(() => {
     async function fetchContractData() {
@@ -121,15 +121,15 @@ export default function MyContract() {
   const { sendTransactions } = transactionServices;
 
   const createNewTournament = async () => {
-    console.log("Formatting transaction")
+    console.log("Formatting transaction");
     const createTournamentTransaction = {
-      value: '0',
+      value: "0",
       data: [
         "createTournament",
-        BytesValue.fromUTF8("tournament-03").valueOf(),
-        BytesValue.fromUTF8("EGLD").valueOf(),
-        new BigUIntValue(Balance.egld(11).valueOf())
-       ].join("@"),
+        Buffer.from("tournament-03").toString("hex"),
+        Buffer.from("EGLD").toString("hex"),
+        new BigUIntValue(Balance.egld(11).valueOf()),
+      ].join("@"),
       receiver:
         "erd1qqqqqqqqqqqqqpgq4mhvpxl9w49z63ppuwfr74nwvudd0zdtd8ssnfgknq",
     };
@@ -139,14 +139,14 @@ export default function MyContract() {
     const { sessionId /*, error*/ } = await sendTransactions({
       transactions: [createTournamentTransaction],
       transactionsDisplayInfo: {
-        processingMessage: 'Processing Ping transaction',
-        errorMessage: 'An error has occured during Ping',
-        successMessage: 'Ping transaction successful'
+        processingMessage: "Processing Ping transaction",
+        errorMessage: "An error has occured during Ping",
+        successMessage: "Ping transaction successful",
       },
-      redirectAfterSign: false
+      redirectAfterSign: false,
     });
     if (sessionId != null) {
-      console.log("sessionId",sessionId)
+      console.log("sessionId", sessionId);
       setTransactionSessionId(sessionId);
     }
   };
@@ -183,7 +183,7 @@ export default function MyContract() {
       <Divider />
       <Text>Data from contract</Text>
       {contractList}
-      <SignTransactionsModals className='custom-class-for-modals' />
+      <SignTransactionsModals className="custom-class-for-modals" />
     </VStack>
   );
 }
