@@ -2,6 +2,8 @@ import { Button, Divider, HStack, Input, Text, VStack } from "@chakra-ui/react";
 import {
   AbiRegistry,
   Address,
+  Balance,
+  BigUIntValue,
   BytesValue,
   Interaction,
   NetworkConfig,
@@ -110,7 +112,13 @@ export default function MyContract() {
   const createNewTournament = async () => {
     console.log("Formatting transaction")
     const createTournamentTransaction = {
-      data: "createTournament tournament-03 EGLD 11",
+      value: '0',
+      data: [
+        "createTournament",
+        BytesValue.fromUTF8("tournament-03"),
+        BytesValue.fromUTF8("EGLD"),
+        new BigUIntValue(Balance.egld(11).valueOf())
+       ].join("@"),
       receiver:
         "erd1qqqqqqqqqqqqqpgq4mhvpxl9w49z63ppuwfr74nwvudd0zdtd8ssnfgknq",
     };
