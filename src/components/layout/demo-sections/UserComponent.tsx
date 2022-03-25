@@ -6,7 +6,7 @@ import { ValContext } from "../../../util/basicContext";
 
 export const myLoggedOut: ContextState = {
   userLoggedIn: false,
-  userName: "Bogdan Oloeriu",
+  userName: "Not my name",
 };
 
 export const myLoggedIn: ContextState = {

@@ -110,14 +110,14 @@ export default function MyContract() {
       string | null
     >(null);
 
-  React.useEffect(() => {
+ /*  React.useEffect(() => {
     async function fetchContractData() {
       let cData = await getTournamentInfoList();
       setContractIdList(cData);
     }
 
     fetchContractData();
-  }, []);
+  }, []); */
 
   const { sendTransactions } = transactionServices;
 
@@ -127,7 +127,7 @@ export default function MyContract() {
       value: "0",
       data: [
         "createTournament",
-        Buffer.from("tournament-06").toString("hex"),
+        Buffer.from("tournament-08").toString("hex"),
         Buffer.from("EGLD").toString("hex"),
         new BigUIntValue(Balance.egld(11).valueOf()),
       ].join("@"),
