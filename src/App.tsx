@@ -24,18 +24,18 @@ export function App() {
           customNetworkConfig={{ name: "customConfig", apiTimeout: 6000 }}
           completedTransactionsDelay={200}
         >
-          <Container p={3}>
+          <Container maxW="container.xl" p={3}>
+            <NavBar />
             <VStack>
-              <NavBar />
               <HStack>
                 <Heading>Bookkeeper</Heading>
                 <div></div>
                 <UserComponent />
               </HStack>
               <HStack>
-                <Link to="/invoices">Invoices</Link> 
-                <Link to="/expenses">Expenses</Link> 
-                <Link to="/wallet">Wallet</Link> 
+                <Link to="/invoices">Invoices</Link>
+                <Link to="/expenses">Expenses</Link>
+                <Link to="/wallet">Wallet</Link>
                 <Link to="/myContract">MyContract</Link>
               </HStack>
             </VStack>
